@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+       .text{
+           text-align: center;
+       }
+    </style>
+</head>
+<body ng-app="app" ng-controller="arr">
+单价：{{proer}}
+数量：<input type="button" ng-click="add()" value="+"><input type="text" ng-model="txt" class="text"><input type="button" ng-click="del()" value="-">
+    总价：{{zjg | currency:"￥"}}
+<script src="js/angular.min.js"></script>
+<script>
+    var app = angular.module("app",[]);
+        app.controller("arr",function($scope){
+            $scope.txt = 5;
+            $scope.proer = 5;
+            $scope.zjg = 25;
+            $scope.add = function(){
+                $scope.txt++;
+                $scope.zjg = ($scope.proer*$scope.txt).toFixed(2)
+            }
+            $scope.del = function(){
+                if ($scope.txt<=1){
+                    alert("最少一个")
+                } else {
+                    $scope.txt--;
+                    $scope.zjg = ($scope.proer*$scope.txt).toFixed(2)
+                }
+            }
+
+        })
+</script>
+</body>
+</html>
